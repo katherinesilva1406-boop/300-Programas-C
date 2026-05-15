@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+//Hardware inventory simulator (Diagnostic module)
+
+
+int main () {
+    int compo[4];
+    float suma = 0, promedio = 0;
+    int estado;
+
+
+    printf("\n>>> WELCOME <<<\n");
+    printf("\n--- HARDWARE INVENTORY ---\n");
+
+//Fill the array
+
+    for (int i= 0; i < 4; i ++) {
+
+        do {
+        printf("\n>>>> Components of MOTHERBOARD: <<<<<\n");
+        printf("\n1. CPU / 2. RAM / 3. GPU / 4. CACHE\n");
+        //array
+        printf("\nEnter component performance: ");
+        // Input validation
+        estado = scanf("%d", &compo[i]);//Evaluation status of input: 1 or 0
+        if (estado == 0) {
+            printf("\nError, invalid input. Try again.\n");
+            while(getchar() != '\n');
+        getche();
+        system("cls");
+
+        printf("\n>>>> Components of MOTHERBOARD: <<<<<\n");
+         for(int j = 0; j < i; j++) {
+            printf("\nESTATUS PERFORMANCE: %d\n\n", compo[j]);
+         }
+        } else if (compo[i] < 1 || compo[i] > 100) { //Evaluation of value input
+            printf("\nError, out of range data. Try again.\n");
+            while(getchar() != '\n');
+        getche();
+        system("cls");
+
+        printf("\n>>>> Components of MOTHERBOARD: <<<<<\n");
+        //Mini for cycle for the history of components data
+        for(int j = 0; j < i; j++) {
+            printf("\nESTATUS PERFORMANCE: %d\n\n", compo[j]);
+        }
+        }
+        }while(estado != 1 || compo[i] < 1 || compo[i] > 100);
+
+        suma += compo[i]; //Accumulator for the average
+        promedio = suma / 4;
+    }
+    system("pause");
+    system("cls");
+
+    printf("AVERAGE OF HARDWARE GLOBAL HEALTH INDEX: %.2f\n", promedio);
+    if (promedio > 80) {
+            printf("\nSTATUS: Optimal for KERNEL execution.\n");
+        } else if (promedio >= 50 && promedio <=80 ) {
+            printf("\nSTATUS: Risk for KERNEL execution. Latent phase.\n");
+        } else {
+            printf("\nSTATUS: Hardware FAILED. Change the components.\n");
+        }
+
+
+
+getche();
+return 0;
+}
+
